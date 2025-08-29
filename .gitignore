@@ -1,0 +1,21 @@
+# Ignore thư mục build
+bin/
+obj/
+
+# Ignore folder cấu hình VS
+.vs/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore file tạm
+*.vsidx
+*.vscode/
+
+# Ignore backup
+*.bak
+*.tmp
+*.log
