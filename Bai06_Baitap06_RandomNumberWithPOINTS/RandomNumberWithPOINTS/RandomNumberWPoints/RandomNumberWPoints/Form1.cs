@@ -26,21 +26,37 @@
         private void btn_Choose_Click(object sender, EventArgs e)
         {
             int sodachon = txtbox_SetNumber.TextLength;
-            if (lbl_TimerNumber.Text == txtbox_SetNumber.Text && sodachon != 0)
+
+            if (lbl_TimerNumber.Text == txtbox_SetNumber.Text)
             {
-                soLanThang++;
-                txtbox_SoLanThang.Text = "Số Lần Thắng: " + soLanThang.ToString();
-            }
-            else
+                switch (CBbox_Level.SelectedIndex)
+                {
+                    case 0:
+                        soLanThang += 1;
+                        break;
+                    case 1:
+                        soLanThang += 2;
+                        break;
+                    case 2:
+                        soLanThang += 3;
+                        break;
+                    case 3:
+                        soLanThang += 5;
+                        break;
+                }
+            } else
             {
-                soLanThang--;
-                txtbox_SoLanThang.Text = "Số Lần Thắng: " + soLanThang.ToString();
+                soLanThang -= 1;
             }
+            txtbox_SoLanThang.Text = "Số Lần Thắng: " + soLanThang.ToString();
         }
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
             int soDatTruoc;
+            btn_Choose.Enabled = true;
+            txtbox_SetNumber.ReadOnly = true;
+
             if (CBbox_Level.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn cấp độ!");
@@ -57,26 +73,23 @@
                 return;
             }
 
-            if (CBbox_Level.SelectedItem.ToString() == "Easy")
+            if (CBbox_Level.SelectedIndex == 0)
             {
                 Timer_Number.Interval = 1000;
-                Timer_Number.Enabled = true;
             }
-            else if (CBbox_Level.SelectedItem.ToString() == "Normal")
+            else if (CBbox_Level.SelectedIndex == 1)
             {
                 Timer_Number.Interval = 500;
-                Timer_Number.Enabled = true;
             }
-            else if (CBbox_Level.SelectedItem.ToString() == "Hard")
+            else if (CBbox_Level.SelectedIndex == 2)
             {
-                Timer_Number.Interval = 300;
-                Timer_Number.Enabled = true;
+                Timer_Number.Interval = 250;
             }
-            else if (CBbox_Level.SelectedItem.ToString() == "BloodyHell")
+            else if (CBbox_Level.SelectedIndex == 3)
             {
                 Timer_Number.Interval = 100;
-                Timer_Number.Enabled = true;
             }
+            Timer_Number.Enabled = true;
         }
 
         private void txtbox_SoLanThang_TextChanged(object sender, EventArgs e)
@@ -93,6 +106,8 @@
         private void Form1_Load(object sender, EventArgs e)
         {
             Timer_Number.Enabled = false;
+            btn_Choose.Enabled = false;
+            txtbox_SetNumber.ReadOnly = false;
         }
     }
 }

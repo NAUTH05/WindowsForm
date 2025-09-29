@@ -38,6 +38,7 @@
             btn_Choose = new Button();
             btn_Start = new Button();
             txtbox_SoLanThang = new TextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -62,8 +63,8 @@
             // 
             // CBbox_Level
             // 
+            CBbox_Level.DropDownStyle = ComboBoxStyle.DropDownList;
             CBbox_Level.Font = new Font("JetBrains Mono", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CBbox_Level.FormattingEnabled = true;
             CBbox_Level.Items.AddRange(new object[] { "Easy", "Normal", "Hard", "BloodyHell" });
             CBbox_Level.Location = new Point(147, 38);
             CBbox_Level.Name = "CBbox_Level";
@@ -126,6 +127,15 @@
             txtbox_SoLanThang.Text = "Số Lần Thắng: 0";
             txtbox_SoLanThang.TextChanged += txtbox_SoLanThang_TextChanged;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(25, 168);
+            label3.Name = "label3";
+            label3.Size = new Size(246, 15);
+            label3.TabIndex = 6;
+            label3.Text = "CRE BY: Nguyễn Đoàn Gia Thuận - 123000135";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -139,6 +149,7 @@
             Controls.Add(CBbox_Level);
             Controls.Add(label2);
             Controls.Add(label1);
+            Controls.Add(label3);
             Name = "Form1";
             Text = "Đỏ Đen Đê";
             Load += Form1_Load;
@@ -157,5 +168,6 @@
         private Button btn_Choose;
         private Button btn_Start;
         private TextBox txtbox_SoLanThang;
+        private Label label3;
     }
 }
