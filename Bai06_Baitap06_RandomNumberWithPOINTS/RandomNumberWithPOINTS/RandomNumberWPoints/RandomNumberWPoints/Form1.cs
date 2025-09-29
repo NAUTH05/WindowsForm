@@ -25,7 +25,7 @@
 
         private void btn_Choose_Click(object sender, EventArgs e)
         {
-            int sodachon = txtbox_SetNumber.TextLength;
+            int sodachon = int.Parse(txtbox_SetNumber.Text);
 
             if (lbl_TimerNumber.Text == txtbox_SetNumber.Text)
             {
@@ -53,43 +53,51 @@
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            int soDatTruoc;
-            btn_Choose.Enabled = true;
-            txtbox_SetNumber.ReadOnly = true;
+            if (btn_Start.Text == "Dừng")
+            {
+                btn_Start.Text = "Bắt Đầu";
+                Timer_Number.Stop();       
+                btn_Choose.Enabled = false;
+                txtbox_SetNumber.ReadOnly = false; 
+                return;
+            }
 
             if (CBbox_Level.SelectedItem == null)
             {
-                MessageBox.Show("Vui lòng chọn cấp độ!");
-                return;
-            } 
-            if (!int.TryParse(txtbox_SetNumber.Text, out soDatTruoc))
-            {
-                MessageBox.Show("Vui lòng nhập số!");
-                return;
-            }
-            if (soDatTruoc < 0 || soDatTruoc > 9)
-            {
-                MessageBox.Show("Vui lòng chọn số từ 1 đến 9!");
+                MessageBox.Show("Vui lòng chọn cấp độ!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (CBbox_Level.SelectedIndex == 0)
+            int soDatTruoc;
+            if (!int.TryParse(txtbox_SetNumber.Text, out soDatTruoc) || soDatTruoc < 0 || soDatTruoc > 9)
             {
-                Timer_Number.Interval = 1000;
+                MessageBox.Show("Vui lòng nhập một số nguyên hợp lệ trong phạm vi từ 0 đến 9!", "Lỗi Dữ Liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else if (CBbox_Level.SelectedIndex == 1)
+
+            switch (CBbox_Level.SelectedIndex)
             {
-                Timer_Number.Interval = 500;
+                case 0:
+                    Timer_Number.Interval = 1000;
+                    break;
+                case 1: 
+                    Timer_Number.Interval = 500;
+                    break;
+                case 2:
+                    Timer_Number.Interval = 250;
+                    break;
+                case 3:
+                    Timer_Number.Interval = 100;
+                    break;
+                default:
+                    break;
             }
-            else if (CBbox_Level.SelectedIndex == 2)
-            {
-                Timer_Number.Interval = 250;
-            }
-            else if (CBbox_Level.SelectedIndex == 3)
-            {
-                Timer_Number.Interval = 100;
-            }
-            Timer_Number.Enabled = true;
+
+            Timer_Number.Start();
+
+            btn_Start.Text = "Dừng";
+            btn_Choose.Enabled = true;
+            txtbox_SetNumber.ReadOnly = true;
         }
 
         private void txtbox_SoLanThang_TextChanged(object sender, EventArgs e)
