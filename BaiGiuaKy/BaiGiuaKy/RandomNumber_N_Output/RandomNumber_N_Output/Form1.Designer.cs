@@ -148,7 +148,7 @@
             Controls.Add(txbox_MaxNumber);
             Controls.Add(txbox_MinNumber);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Bài Giữa Kỳ";
             ResumeLayout(false);
             PerformLayout();
 
