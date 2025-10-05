@@ -27,7 +27,9 @@ namespace RandomNumber_N_Output
             min = Convert.ToInt32(txbox_MinNumber.Text);
             max = Convert.ToInt32(txbox_MaxNumber.Text);
             times = Convert.ToInt32(txbox_Times.Text);
+
             List<int> outputList = Enumerable.Range(min, max - min + 1).ToList();
+
             for (int i = outputList.Count - 1; i > 0; i--)
             {
                 int j = r.Next(0, i + 1);
@@ -50,6 +52,7 @@ namespace RandomNumber_N_Output
         private void btn_SortAZ_Click(object sender, EventArgs e)
         {
             resultlist.Sort();
+
             txbox_OutPut.Text = string.Join(", ", resultlist);
         }
 
@@ -57,6 +60,7 @@ namespace RandomNumber_N_Output
         {
             resultlist.Sort();
             resultlist.Reverse();
+
             txbox_OutPut.Text = string.Join(", ", resultlist);
         }
     }
