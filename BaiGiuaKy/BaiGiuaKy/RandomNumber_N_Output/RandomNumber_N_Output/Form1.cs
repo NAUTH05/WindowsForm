@@ -27,7 +27,7 @@ namespace RandomNumber_N_Output
             min = Convert.ToInt32(txbox_MinNumber.Text);
             max = Convert.ToInt32(txbox_MaxNumber.Text);
             times = Convert.ToInt32(txbox_Times.Text);
-            List<int> outputList = Enumerable.Range(min, max - 1).ToList();
+            List<int> outputList = Enumerable.Range(min, max + 1).ToList();
             for (int i = outputList.Count - 1; i > 0; i--)
             {
                 int j = r.Next(0, i + 1);
